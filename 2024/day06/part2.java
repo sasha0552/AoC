@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class part1 {
+public class part2 {
   private static void printGrid(List<char[]> grid) {
     {
       StringBuilder header = new StringBuilder(" ");
@@ -21,29 +21,8 @@ public class part1 {
     System.out.println("===== ===== ===== ===== =====");
   }
 
-  public static void main(String[] args) throws Throwable {
-    int x = 0, y = 0, dir = 0, cnt = 0;
-
-    List<char[]> grid = new ArrayList<>();
-    try (BufferedReader reader = new BufferedReader(new FileReader("input.txt"))) {
-      String line;
-      int i = 0;
-      
-      while ((line = reader.readLine()) != null) {
-        char[] cols = line.trim().toCharArray();
-        
-        for (int j = 0; j < cols.length; j++) {
-          if (cols[j] == '^') {
-            x = j;
-            y = i;
-          }
-        }
-
-        grid.add(cols);
-
-        i++;
-      }
-    }
+  private static boolean tryGrid(List<char[]> grid, int startX, int startY) {
+    int x = startX, y = startY, dir = 0, cnt = 0;
 
     Map<String, Integer> lpcnt = new HashMap<>();
 
@@ -63,10 +42,10 @@ public class part1 {
         break;
       }
 
-      if (grid.get(ny)[nx] == '#') {
+      if (grid.get(ny)[nx] == '#' || grid.get(ny)[nx] == 'O') {
         dir = (dir + 1) % 4;
         cnt++;
-        if (cnt == 2) {
+        if (cnt >= 4) {
           break;
         }
       } else {
@@ -74,7 +53,7 @@ public class part1 {
         String cpos = x + "," + y;
         lpcnt.put(cpos, lpcnt.getOrDefault(cpos, 0) + 1);
         if (lpcnt.get(cpos) >= 100) {
-          break;
+          return false;
         }
         if (lpcnt.get(cpos) >= 50) {
           grid.get(y)[x] = '!';
@@ -102,12 +81,51 @@ public class part1 {
       }
     }
 
-    //printGrid(grid);
+    return true;
+  }
 
-    int result = 1;
-    for (char[] row : grid) {
-      for (char col : row) {
-        if (col == 'X') {
+  private static List<char[]> listcpy(List<char[]> oldList) throws Throwable {
+    List<char[]> newList = new ArrayList<>();
+    for (char[] oldArr : oldList) {
+      newList.add(oldArr.clone());
+    }
+    return newList;
+  }
+
+  public static void main(String[] args) throws Throwable {
+    int x = 0, y = 0, maxX = 0, maxY = 0;
+
+    List<char[]> grid = new ArrayList<>();
+    try (BufferedReader reader = new BufferedReader(new FileReader("input.txt"))) {
+      String line;
+      int i = 0;
+      
+      while ((line = reader.readLine()) != null) {
+        char[] cols = line.trim().toCharArray();
+
+        maxY = cols.length;
+
+        for (int j = 0; j < cols.length; j++) {
+          if (cols[j] == '^') {
+            x = j;
+            y = i;
+          }
+        }
+
+        grid.add(cols);
+
+        i++;
+      }
+
+      maxX = i;
+    }
+
+    int result = 0;
+    for (int i = 0; i < maxX; i++) {
+      for (int j = 0; j < maxY; j++) {
+        List<char[]> gridd = listcpy(grid);
+        gridd.get(j)[i] = 'O';
+        if (!tryGrid(gridd, x, y)) {
           result++;
         }
       }
