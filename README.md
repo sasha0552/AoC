@@ -9,3 +9,4 @@
 | [Day 3](./2024/day03/)  | Perl                 |
 | [Day 4](./2024/day04/)  | Lua                  |
 | [Day 5](./2024/day05/)  | Nim                  |
+| [Day 6](./2024/day06/)  | Java                 |
