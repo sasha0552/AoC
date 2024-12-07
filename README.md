@@ -10,3 +10,4 @@
 | [Day 4](./2024/day04/)  | Lua                  |
 | [Day 5](./2024/day05/)  | Nim                  |
 | [Day 6](./2024/day06/)  | Java                 |
+| [Day 7](./2024/day07/)  | CUDA                 |
