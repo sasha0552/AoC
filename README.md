@@ -4,12 +4,13 @@
 
 | Day                     | Programming language |
 |-------------------------|----------------------|
-| [Day 1](./2024/day01/)  | JavaScript           |
-| [Day 2](./2024/day02/)  | Python               |
-| [Day 3](./2024/day03/)  | Perl                 |
-| [Day 4](./2024/day04/)  | Lua                  |
-| [Day 5](./2024/day05/)  | Nim                  |
-| [Day 6](./2024/day06/)  | Java                 |
-| [Day 7](./2024/day07/)  | CUDA                 |
-| [Day 8](./2024/day08/)  | C#                   |
-| [Day 9](./2024/day09/)  | Go                   |
+| [Day 01](./2024/day01/)  | JavaScript           |
+| [Day 02](./2024/day02/)  | Python               |
+| [Day 03](./2024/day03/)  | Perl                 |
+| [Day 04](./2024/day04/)  | Lua                  |
+| [Day 05](./2024/day05/)  | Nim                  |
+| [Day 06](./2024/day06/)  | Java                 |
+| [Day 07](./2024/day07/)  | CUDA                 |
+| [Day 08](./2024/day08/)  | C#                   |
+| [Day 09](./2024/day09/)  | Go                   |
+| [Day 10](./2024/day10/)  | Ruby                 |
